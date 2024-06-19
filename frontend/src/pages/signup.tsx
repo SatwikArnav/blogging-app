@@ -1,3 +1,6 @@
 export const Signup=()=>{
-    return "signup";
+    console.log("hi");
+    return(
+        "signup"
+    )
 }
