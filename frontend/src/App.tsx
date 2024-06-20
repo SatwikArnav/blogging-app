@@ -5,7 +5,7 @@ import { Signup } from "./pages/signup";
 const App = () => {
   return (
     <>
-      <div>hello</div>
+      
       <BrowserRouter>
         <Routes>
           <Route path="/signup" element={<Signup />} />
