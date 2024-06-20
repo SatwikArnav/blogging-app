@@ -47,12 +47,12 @@ export const SigninAuth = () => {
                 />
               </div>
               <div>
-                <label htmlFor="first_name" className="block mb-2 text-sm font-medium text-black mt-2">
+                <label htmlFor="password" className="block mb-2 text-sm font-medium text-black mt-2">
                   Password
                 </label>
                 <input
                   type="password"
-                  id="first_name"
+                  id="password"
                   onChange={(e) => {
                     setInput({
                       ...input,
@@ -71,11 +71,11 @@ export const SigninAuth = () => {
               onClick={async ()=>{
                 try {
                     const response = await axios.post(`${BACKEND_URL}/api/v1/user/signin ` , input);
-                    const jwt = response.data;
+                    const jwt = response.data.token;
                     localStorage.setItem("token", jwt);
                     navigate("/blogs");
                 } catch(e) {
-                    alert("Error while signing up")
+                    alert("Error while signing in")
                     // alert the user here that the request failed
                 }
               }}

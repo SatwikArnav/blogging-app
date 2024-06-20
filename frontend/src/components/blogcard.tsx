@@ -1,20 +1,23 @@
+import { Link } from "react-router-dom";
+
 interface p{
  
     name:string;
     title:string;
     content:string;
     time:string;
+    id:string
 }
 
 
-export const BlogCard=({name,title,content,time}:p)=>{
+export const BlogCard=({name,title,content,time,id}:p)=>{
     return(
         
-
-<div className="p-6 border-b-2 max-w-2xl shadow-xl">
+<Link to={`/blog/${id}`}>
+<div className="p-6 border-b-2 max-w-2xl shadow-xl z-4  ">
   <div className="flex">
     <div className="relative inline-flex items-center justify-center w-7 h-7 overflow-hidden bg-gray-100 rounded-full dark:bg-gray-600">
-    <span className="font-medium text-gray-600 dark:text-gray-300">S</span>
+    <span className="font-medium text-gray-600 dark:text-gray-300">{name[0]}</span>
     
 </div>
 <div className="flex flex-col justify-center">
@@ -42,7 +45,7 @@ export const BlogCard=({name,title,content,time}:p)=>{
 
 
 </div>
-
+</Link>
 
 
     )
