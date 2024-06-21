@@ -77,6 +77,7 @@ blogRouter.get('/bulk', async (c) => {
                 content: true,
                 title: true,
                 id: true,
+                createdAt:true,
                 author: {
                     select: {
                         name: true
@@ -91,6 +92,57 @@ blogRouter.get('/bulk', async (c) => {
             return c.json({"message":"could not create"})
         }
 })
+
+blogRouter.get('bulk/:id',async  (c) => {
+    try{
+        
+        const prisma = new PrismaClient({
+            datasourceUrl: c.env.DATABASE_URL,
+        }).$extends(withAccelerate());
+           
+         const post=await prisma.post.findMany({
+            where:
+                //id:c.req.param("id")
+                {
+                    OR: [
+                      {
+                        title: {
+                          contains: c.req.param("id"),
+                          mode: 'insensitive', // Optional: makes the search case-insensitive
+                        },
+                      },
+                      {
+                        content: {
+                          contains: c.req.param("id"),
+                          mode: 'insensitive', // Optional: makes the search case-insensitive
+                        },
+                      },
+                    ],
+                  },
+            
+        
+            select: {
+                content: true,
+                title: true,
+                id: true,
+                createdAt:true,
+                author: {
+                    select: {
+                        name: true
+                    }
+                }
+            }
+            
+    })   
+         return c.json(post);
+        }
+        catch(e){
+            c.status(400)
+            return c.json({"message":"could not create"})
+        }
+})
+
+  
 
 blogRouter.get('/:id',async  (c) => {
     try{
@@ -107,6 +159,7 @@ blogRouter.get('/:id',async  (c) => {
                 content: true,
                 title: true,
                 id: true,
+                createdAt:true,
                 author: {
                     select: {
                         name: true

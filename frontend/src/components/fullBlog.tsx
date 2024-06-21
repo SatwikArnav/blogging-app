@@ -1,10 +1,27 @@
+import { useState } from "react";
 import { Blog } from "../customhooks"
 import { Appbar } from "./appbar"
+import { Dropdown } from "./dropdown";
 //import { Avatar } from "./BlogCard"
+function convertDateFormat(dateString: string): string {
+    const [day, month, year] = dateString.split('-');
+    const date = new Date(parseInt(year), parseInt(month) - 1, parseInt(day));
+    const monthNames: string[] = ["Jan", "Feb", "Mar", "Apr", "May", "Jun",
+                                  "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+    
+    return `${day} ${monthNames[date.getMonth()]} ${year}`;
+  }
+
 
 export const FullBlog = ({ blog }: {blog: Blog}) => {
+    const [drop, setDrop] = useState(false);
     return <div>
-        <Appbar />
+        <Appbar setDrop={setDrop} />
+        {drop && (
+                <div className="absolute top-20 right-20">
+                    <Dropdown />
+                </div>
+            )}
         <div className="h-16"></div>
         <div className="flex justify-center">
             <div className="grid grid-cols-12 px-10 w-full pt-200 max-w-screen-xl pt-12">
@@ -13,7 +30,7 @@ export const FullBlog = ({ blog }: {blog: Blog}) => {
                         {blog.title}
                     </div>
                     <div className="text-slate-500 pt-2">
-                        Post on 2nd December 2023
+                        posted on {convertDateFormat(blog.createdAt)}
                     </div>
                     <div className="pt-4 ">
                      {blog.content}

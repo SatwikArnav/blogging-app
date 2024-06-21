@@ -7,6 +7,7 @@ interface p{
     content:string;
     time:string;
     id:string
+    
 }
 
 

@@ -18,7 +18,7 @@ export const SigninAuth = () => {
         <div className="flex justify-center">
           <div className="flex-col shadow-2xl px-14 pb-10 pt-10">
             <div className="pr-10 pl-10">
-              <div className="font-bold text-3xl">create an account</div>
+              <div className="font-bold text-3xl">Login to your account</div>
               <div className="text-slate-500 flex">
                 <div>new to this app?</div>
                 <Link className="pl-1.5 underline" to="/signup">
@@ -73,6 +73,7 @@ export const SigninAuth = () => {
                     const response = await axios.post(`${BACKEND_URL}/api/v1/user/signin ` , input);
                     const jwt = response.data.token;
                     localStorage.setItem("token", jwt);
+
                     navigate("/blogs");
                 } catch(e) {
                     alert("Error while signing in")
