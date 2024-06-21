@@ -1,17 +1,18 @@
 import { BlogCard } from "../components/blogcard";
 import { Appbar } from "../components/appbar";
 import { useBlogs } from "../customhooks";
+import { Loading } from "../components/loading";
 
 
 export const Blogs=()=>{
     const {blogs,loading}=useBlogs();
     //console.log(blogs)
-    if (loading) {
-        return( <div>
+    if (loading || !blogs) {
+        return <div className="grid place-content-center h-screen">
+            <Loading/>
             
-                Loading ...
-            </div>
-   ) }
+        </div>
+    }
 
     return <div>
         <Appbar />

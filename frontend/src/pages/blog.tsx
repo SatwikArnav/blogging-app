@@ -3,6 +3,7 @@ import { FullBlog } from "../components/fullBlog";
 //import { Spinner } from "../components/Spinner";
 import { useBlog } from "../customhooks";
 import {useParams} from "react-router-dom";
+import { Loading } from "../components/loading";
 
 // atomFamilies/selectorFamilies
 export const Blog = () => {
@@ -12,8 +13,9 @@ export const Blog = () => {
     });
     console.log(blog);
     if (loading || !blog) {
-        return <div>
-            loading...
+        return <div className="grid place-content-center h-screen">
+            <Loading/>
+            
         </div>
     }
     return <div>
