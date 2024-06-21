@@ -1,1 +1,1 @@
-export const BACKEND_URL="https://backend.satwikarnav.workers.dev"
+export const BACKEND_URL=a.env
