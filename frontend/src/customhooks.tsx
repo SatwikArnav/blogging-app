@@ -9,6 +9,7 @@ export interface Blog {
     "createdAt":string
     "author": {
         "name": string
+        "intro":string
     }
 }
 export const useBlogs=(filter:string)=>{
@@ -16,8 +17,11 @@ export const useBlogs=(filter:string)=>{
     const [loading,setloading]=useState(true);
     
     useEffect(() => {
-        
-        axios.get(`${BACKEND_URL}/api/v1/blog/bulk/${filter}`, {
+        let url=`${BACKEND_URL}/api/v1/blog/bulk`
+        if (filter!=""){
+            url=url+`/${filter}`
+        }
+        axios.get(url, {
             headers: {
                 Authorization: localStorage.getItem("token")
             }

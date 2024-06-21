@@ -4,6 +4,7 @@ import { useBlogs } from "../customhooks";
 import { Loading } from "../components/loading";
 import { Dropdown } from "../components/dropdown";
 import { useState } from "react";
+import { useParams } from "react-router-dom";
 
 function convertDateFormat(dateString: string): string {
     try {
@@ -20,8 +21,9 @@ function convertDateFormat(dateString: string): string {
 }
 
 export const Blogs = () => {
+    const { id } = useParams();
     const [drop, setDrop] = useState(false);
-    const [filter, setFilter] = useState("chicken");
+    const [filter, setFilter] = useState("");
     const { blogs, loading } = useBlogs(filter);
 
     if (loading || !blogs) {
@@ -40,7 +42,7 @@ export const Blogs = () => {
                 </div>
             )}
             <div>
-                <Appbar2 setDrop={setDrop} setFilter={setFilter} filter={filter} />
+                <Appbar2 setDrop={setDrop} setFilter={setFilter}  filter={filter} id={id ||"Anonymous"}/>
             </div>
             <div className="h-20" />
             <div className="flex justify-center">
@@ -60,3 +62,5 @@ export const Blogs = () => {
         </div>
     );
 };
+
+

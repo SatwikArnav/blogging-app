@@ -19,6 +19,7 @@ model User {
   email    String   @unique
   name     String?  @default("Anounymous")
   password String
+  intro    String   @default("The author did not bother to give any intro")
   posts    Post[]
 }
 
@@ -28,6 +29,7 @@ model Post {
   content   String
   published Boolean  @default(false)
   createdAt String   @default(dbgenerated("TO_CHAR(CURRENT_DATE, 'DD-MM-YYYY')"))
+
   author    User     @relation(fields: [authorId], references: [id])
   authorId  String
 }

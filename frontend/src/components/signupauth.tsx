@@ -9,6 +9,7 @@ export const SignupAuth = () => {
     email: "",
     password: "",
     name: "",
+    intro:"",
   });
   const navigate=useNavigate();
 
@@ -47,7 +48,7 @@ export const SignupAuth = () => {
               </div>
               <div>
                 <label htmlFor="first_name" className="block mb-2 text-sm font-medium text-black mt-2">
-                  User Name
+                  Email
                 </label>
                 <input
                   type="text"
@@ -56,6 +57,24 @@ export const SignupAuth = () => {
                     setInput({
                       ...input,
                       email: e.target.value,
+                    });
+                  }}
+                  className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 ml-6 mt-4"
+                  placeholder="Username"
+                  required
+                />
+              </div>
+              <div>
+                <label htmlFor="first_name" className="block mb-2 text-sm font-medium text-black mt-2">
+                  Give us your Intro
+                </label>
+                <input
+                  type="text"
+                  //id="first_name"
+                  onChange={(e) => {
+                    setInput({
+                      ...input,
+                      intro: e.target.value,
                     });
                   }}
                   className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 ml-6 mt-4"
@@ -90,7 +109,8 @@ export const SignupAuth = () => {
                     const response = await axios.post(`${BACKEND_URL}/api/v1/user/signup ` , input);
                     const jwt = response.data;
                     localStorage.setItem("token", jwt);
-                    navigate("/blogs");
+                    const id=response.data.name||"Anonymous";
+                    navigate(`/blogs/${id}`);
                 } catch(e) {
                     alert("Error while signing up")
                     // alert the user here that the request failed

@@ -35,7 +35,8 @@ userRouter.post('/', (c) => {
       const token = await sign(payload, secret)
       c.status(201);
   return c.json({
-    token:"Bearer"+" "+token
+    token:"Bearer"+" "+token,
+    name:user.name
   });
     }
     catch(e){
@@ -69,7 +70,8 @@ userRouter.post('/', (c) => {
       const token = await sign(payload, secret)
       //console.log("ji")
   return c.json({
-    token:"Bearer"+" "+token
+    token:"Bearer"+" "+token,
+    name:user.name
   });
     }
     catch(e){

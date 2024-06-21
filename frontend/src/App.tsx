@@ -9,14 +9,13 @@ import { Publish } from "./pages/publishBlog";
 const App = () => {
   return (
     <>
-      
       <BrowserRouter>
         <Routes>
           <Route path="/signup" element={<Signup />} />
           <Route path="/signin" element={<Signin />} />
-          <Route path="/blogs" element={<Blogs />} />
-          <Route path="/blog/:id" element={<Blog/>}/>
-          <Route path="/publish" element={<Publish/>}/>
+          <Route path="/blogs/:id" element={<Blogs />} />
+          <Route path="/blog/:id" element={<Blog/>} />
+          <Route path="/publish" element={<Publish/>} />
         </Routes>
       </BrowserRouter>
     </>

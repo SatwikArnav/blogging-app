@@ -30,7 +30,7 @@ export const SigninAuth = () => {
               
               <div>
                 <label htmlFor="first_name" className="block mb-2 text-sm font-medium text-black mt-2">
-                  User Name
+                  Email
                 </label>
                 <input
                   type="text"
@@ -73,8 +73,8 @@ export const SigninAuth = () => {
                     const response = await axios.post(`${BACKEND_URL}/api/v1/user/signin ` , input);
                     const jwt = response.data.token;
                     localStorage.setItem("token", jwt);
-
-                    navigate("/blogs");
+                    const id=response.data.name || "Anonymous";
+                    navigate(`/blogs/${id}`);
                 } catch(e) {
                     alert("Error while signing in")
                     // alert the user here that the request failed
