@@ -93,7 +93,7 @@ blogRouter.get('/bulk', async (c) => {
         }
 })
 
-blogRouter.get('bulk/:id',async  (c) => {
+blogRouter.get('bulk/:id?',async  (c) => {
     try{
         
         const prisma = new PrismaClient({
@@ -107,13 +107,13 @@ blogRouter.get('bulk/:id',async  (c) => {
                     OR: [
                       {
                         title: {
-                          contains: c.req.param("id"),
+                          contains: c.req.param("id")||"a",
                           mode: 'insensitive', // Optional: makes the search case-insensitive
                         },
                       },
                       {
                         content: {
-                          contains: c.req.param("id"),
+                          contains: c.req.param("id")||"a",
                           mode: 'insensitive', // Optional: makes the search case-insensitive
                         },
                       },

@@ -1,22 +1,28 @@
 import { BlogCard } from "../components/blogcard";
-import { Appbar } from "../components/appbar";
+import { Appbar2 } from "../components/appbar2";
 import { useBlogs } from "../customhooks";
 import { Loading } from "../components/loading";
 import { Dropdown } from "../components/dropdown";
 import { useState } from "react";
 
 function convertDateFormat(dateString: string): string {
-    const [day, month, year] = dateString.split('-');
-    const date = new Date(parseInt(year), parseInt(month) - 1, parseInt(day));
-    const monthNames: string[] = ["Jan", "Feb", "Mar", "Apr", "May", "Jun",
-                                  "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
-    
-    return `${day} ${monthNames[date.getMonth()]} ${year}`;
+    try {
+        const [day, month, year] = dateString.split('-');
+        const date = new Date(parseInt(year), parseInt(month) - 1, parseInt(day));
+        const monthNames: string[] = ["Jan", "Feb", "Mar", "Apr", "May", "Jun",
+                                      "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+
+        return `${day} ${monthNames[date.getMonth()]} ${year}`;
+    } catch (error) {
+        console.error("Invalid date format:", dateString);
+        return dateString; // Return original string if conversion fails
+    }
 }
 
 export const Blogs = () => {
-    const { blogs, loading } = useBlogs();
     const [drop, setDrop] = useState(false);
+    const [filter, setFilter] = useState("chicken");
+    const { blogs, loading } = useBlogs(filter);
 
     if (loading || !blogs) {
         return (
@@ -34,7 +40,7 @@ export const Blogs = () => {
                 </div>
             )}
             <div>
-            <Appbar setDrop={setDrop} />
+                <Appbar2 setDrop={setDrop} setFilter={setFilter} filter={filter} />
             </div>
             <div className="h-20" />
             <div className="flex justify-center">
@@ -49,9 +55,6 @@ export const Blogs = () => {
                             id={blog.id}
                         />
                     ))}
-                    <BlogCard name="satwik" title="aslckb" content="lkbaf" time="3 Dec 2024" id="saf" />
-                    <BlogCard id="eeef" name="satwik" title="aslckbggxlcx" content="lkbafvukfjhdjdgdghgdh yjy yu ryr y tyvrv rrvrforev tvbbtbtyevryevcrycwvtrwctyectwctrwtru e5evyveyvy" time="3 Dec 2024" />
-                    <BlogCard id="fe" name="rishabh" title="big black rain forest" content="Rain forests can be as big as you want, all you have to do is soak some seeds and give some water, and there it is filled with glory" time="3 Dec 2024" />
                 </div>
             </div>
         </div>

@@ -11,11 +11,13 @@ export interface Blog {
         "name": string
     }
 }
-export const useBlogs=()=>{
+export const useBlogs=(filter:string)=>{
     const [blogs,setblogs]=useState<Blog[]>([]);
     const [loading,setloading]=useState(true);
+    
     useEffect(() => {
-        axios.get(`${BACKEND_URL}/api/v1/blog/bulk`, {
+        
+        axios.get(`${BACKEND_URL}/api/v1/blog/bulk/${filter}`, {
             headers: {
                 Authorization: localStorage.getItem("token")
             }
@@ -25,7 +27,10 @@ export const useBlogs=()=>{
                 setloading(false);
                 //console.log(blogs);
             })
-    }, [])
+    }, [filter])
+
+
+
     
     return {
         loading,

@@ -2,20 +2,22 @@ import React from 'react';
 import { Link } from "react-router-dom";
 import { Search } from "./searchbar";
 
-interface AppbarProps {
+interface Appbar2Props {
   setDrop: React.Dispatch<React.SetStateAction<boolean>>;
   setFilter: (value: string) => void;
   filter:string;
 }
 
-export const Appbar: React.FC<AppbarProps> = ({ setDrop, setFilter,filter }) => {
+export const Appbar2: React.FC<Appbar2Props> = ({ setDrop, setFilter,filter }) => {
   return (
     <div className="fixed z-10 top-0 left-0 right-0 border-b shadow-2xl bg-white">
       <div className="container mx-auto px-4 py-4 flex justify-between items-center">
         <Link to='/blogs' className="font-semibold text-xl">
           NextTale
         </Link>
-        
+        <div className="flex-1 mx-4">
+          <Search setFilter={setFilter} filter={filter} />
+        </div>
         <div className="flex items-center">
           <Link to="/publish">
             <button
