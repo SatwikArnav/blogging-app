@@ -33,7 +33,7 @@ export const Appbar2: React.FC<Appbar2Props> = ({ setDrop, setFilter,filter ,id}
             onClick={() => setDrop(prev => !prev)}
             className="relative inline-flex items-center justify-center w-9 h-9 overflow-hidden bg-gray-100 rounded-full dark:bg-gray-600 cursor-pointer"
           >
-            <span className="font-medium text-gray-600 dark:text-gray-300">{id[0]}</span>
+            <span className="font-medium text-gray-600 dark:text-gray-300">{(localStorage.getItem("name")||"Anonymous")[0]}</span>
           </div>
         </div>
       </div>

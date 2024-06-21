@@ -73,8 +73,9 @@ export const SigninAuth = () => {
                     const response = await axios.post(`${BACKEND_URL}/api/v1/user/signin ` , input);
                     const jwt = response.data.token;
                     localStorage.setItem("token", jwt);
-                    const id=response.data.name || "Anonymous";
-                    navigate(`/blogs/${id}`);
+                    const name=response.data.name||"Anonymous";
+                    localStorage.setItem("name",name );
+                    navigate("/blogs");
                 } catch(e) {
                     alert("Error while signing in")
                     // alert the user here that the request failed

@@ -109,8 +109,9 @@ export const SignupAuth = () => {
                     const response = await axios.post(`${BACKEND_URL}/api/v1/user/signup ` , input);
                     const jwt = response.data;
                     localStorage.setItem("token", jwt);
-                    const id=response.data.name||"Anonymous";
-                    navigate(`/blogs/${id}`);
+                    const name=response.data.name||"Anonymous";
+                    localStorage.setItem("name",name );
+                    navigate("/blogs");
                 } catch(e) {
                     alert("Error while signing up")
                     // alert the user here that the request failed
