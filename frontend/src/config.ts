@@ -1,1 +1,1 @@
-export const BACKEND_URL=a.env
+export const BACKEND_URL=a
