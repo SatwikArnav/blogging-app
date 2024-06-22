@@ -58,7 +58,7 @@ userRouter.post('/', (c) => {
             }
       const user=await prisma.user.findFirst({
         where:{
-          name:body.name
+          email:body.email
         }
       })
   
