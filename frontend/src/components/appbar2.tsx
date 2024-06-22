@@ -10,6 +10,7 @@ interface Appbar2Props {
 }
 
 export const Appbar2: React.FC<Appbar2Props> = ({ setDrop, setFilter,filter ,id}) => {
+  console.log(id);
   return (
     <div className="fixed z-10 top-0 left-0 right-0 border-b shadow-2xl bg-white">
       <div className="container mx-auto px-4 py-4 flex justify-between items-center">

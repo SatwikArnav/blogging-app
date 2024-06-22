@@ -23,14 +23,13 @@ export const useBlogs=(filter:string)=>{
         }
         axios.get(url, {
             headers: {
-                Authorization: localStorage.getItem("token")
+              Authorization: localStorage.getItem("token")
             }
-        })
-            .then(response => {
-                setblogs(response.data);
-                setloading(false);
-                //console.log(blogs);
-            })
+          })
+          .then(response => {
+            setblogs(response.data);
+            setloading(false);
+          });
     }, [filter])
 
 
@@ -46,7 +45,7 @@ export const useBlogs=(filter:string)=>{
 export const useBlog = ({ id }: { id: string }) => {
     const [loading, setLoading] = useState(true);
     const [blog, setBlog] = useState<Blog>();
-
+    
     useEffect(() => {
         axios.get(`${BACKEND_URL}/api/v1/blog/${id}`, {
             headers: {

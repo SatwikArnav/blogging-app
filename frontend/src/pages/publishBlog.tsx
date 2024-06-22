@@ -3,15 +3,24 @@ import { Appbar } from "../components/appbar"
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { BACKEND_URL } from "../config";
+import { Dropdown } from "../components/dropdown";
 
 
 export const Publish=()=>{
     const [title,settitle]=useState("");
     const [content,setcontent]=useState("");
     const navigate=useNavigate();
+    const [drop, setDrop] = useState(false);
+    const [filter, setFilter] = useState("");
+    console.log(filter);
     return(
     <>
-    <Appbar></Appbar>
+    <Appbar setDrop={setDrop} setFilter={setFilter} filter={""} />
+      {drop && (
+        <div className="absolute top-20 right-20">
+          <Dropdown />
+        </div>
+      )}
     <div className="h-24"></div>
         <div className="flex justify-center">
   <div className="w-3/4">
@@ -103,7 +112,7 @@ export const Publish=()=>{
            <label htmlFor="editor" className="sr-only">Publish post</label>
            <textarea onChange={(e)=>{
         setcontent(e.target.value);
-    }} id="editor" rows="8" className=" focus:outline-none block w-full px-0 text-sm text-gray-800 bg-white border-0 dark:bg-gray-800 focus:ring-0 dark:text-white dark:placeholder-gray-400" placeholder="Write an article..." required ></textarea>
+    }} id="editor"  className="  h-72 focus:outline-none block w-full px-0 text-sm text-gray-800 bg-white border-0 dark:bg-gray-800 focus:ring-0 dark:text-white dark:placeholder-gray-400" placeholder="Write an article..." required ></textarea>
        </div>
    </div>
    

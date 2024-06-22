@@ -63,7 +63,8 @@ userRouter.post('/', (c) => {
       })
   
       if(!user){
-        return c.text('oops');
+        
+        return c.text('oops',403);
       }
       const payload={id:user.id}
       const secret=c.env.JWT_SECRET

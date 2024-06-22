@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from "react-router-dom";
-import { Search } from "./searchbar";
+
 
 interface AppbarProps {
   setDrop: React.Dispatch<React.SetStateAction<boolean>>;
@@ -9,6 +9,7 @@ interface AppbarProps {
 }
 
 export const Appbar: React.FC<AppbarProps> = ({ setDrop, setFilter,filter }) => {
+  console.log(setFilter,filter);
   return (
     <div className="fixed z-10 top-0 left-0 right-0 border-b shadow-2xl bg-white">
       <div className="container mx-auto px-4 py-4 flex justify-between items-center">

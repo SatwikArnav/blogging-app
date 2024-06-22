@@ -6,7 +6,7 @@ export const Dropdown = () => {
     const handleLogout = () => {
         localStorage.removeItem("token");
         localStorage.removeItem("data");
-        navigate("/signin");
+        navigate("/");
     };
 
     return (

@@ -2,9 +2,7 @@ import { useState } from "react";
 import { Blog } from "../customhooks";
 import { Appbar } from "./appbar";
 import { Dropdown } from "./dropdown";
-interface AppbarProps {
-  setDrop: React.Dispatch<React.SetStateAction<boolean>>;
-}
+
 function convertDateFormat(dateString: string): string {
   const [day, month, year] = dateString.split('-');
   const date = new Date(parseInt(year), parseInt(month) - 1, parseInt(day));
@@ -14,10 +12,12 @@ function convertDateFormat(dateString: string): string {
 
 export const FullBlog = ({ blog }: {blog: Blog}) => {
   const [drop, setDrop] = useState(false);
-
+  
+    const [filter, setFilter] = useState("");
+  console.log(filter);
   return (
     <div>
-      <Appbar setDrop={setDrop} />
+      <Appbar setDrop={setDrop} setFilter={setFilter} filter={""} />
       {drop && (
         <div className="absolute top-20 right-20">
           <Dropdown />

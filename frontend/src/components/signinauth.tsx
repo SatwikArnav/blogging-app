@@ -1,4 +1,4 @@
-import { SigninType, createPostInput, updatePostInput } from "@satwikarnav/common-app";
+import { SigninType} from "@satwikarnav/common-app";
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { BACKEND_URL } from "../config";

@@ -4,7 +4,7 @@ import { Signup } from "./pages/signup";
 import { Blogs } from "./pages/blogs";
 import { Blog } from "./pages/blog";
 import { Publish } from "./pages/publishBlog";
-import { useEffect } from "react";
+//import { useEffect } from "react";
 //import { FullBlog } from "./components/fullBlog";
 
 const App = () => {
@@ -16,7 +16,7 @@ const App = () => {
       <BrowserRouter>
         <Routes>
           <Route path="/signup" element={<Signup />} />
-          <Route path="/signin" element={<Signin />} />
+          <Route path="/" element={<Signin />} />
           <Route path="/blogs" element={<Blogs />} />
           <Route path="/blog/:id" element={<Blog/>} />
           <Route path="/publish" element={<Publish/>} />

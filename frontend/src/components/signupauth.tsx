@@ -1,4 +1,4 @@
-import { SigninType, SignupType, createPostInput, updatePostInput } from "@satwikarnav/common-app";
+import {  SignupType,} from "@satwikarnav/common-app";
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { BACKEND_URL } from "../config";
@@ -22,7 +22,7 @@ export const SignupAuth = () => {
               <div className="font-bold text-3xl">create an account</div>
               <div className="text-slate-500 flex">
                 <div>already have an account?</div>
-                <Link className="pl-1.5 underline" to="/signin">
+                <Link className="pl-1.5 underline" to="/">
                   login
                 </Link>
               </div>
@@ -107,7 +107,8 @@ export const SignupAuth = () => {
               onClick={async ()=>{
                 try {
                     const response = await axios.post(`${BACKEND_URL}/api/v1/user/signup ` , input);
-                    const jwt = response.data;
+                    console.log(response.data);
+                    const jwt = response.data.token;
                     localStorage.setItem("token", jwt);
                     const name=response.data.name||"Anonymous";
                     localStorage.setItem("name",name );
