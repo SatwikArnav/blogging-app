@@ -37,7 +37,7 @@ export const FullBlog = ({ blog }: {blog: Blog}) => {
               {blog.content}
             </div>
           </div>
-          <div className="col-span-4 shadow-lg">
+          <div className="col-span-4 shadow-lg max-h-[230px] rounded-xl">
             <div className="text-slate-600 text-lg">Author</div>
             <div className="flex w-full">
               <div className="flex flex-col justify-center">

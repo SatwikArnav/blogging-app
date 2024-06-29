@@ -40,7 +40,7 @@ const rateLimit = (limit: number, window: number) => {
     return next()
   }
 }
-app.use('*', rateLimit(20, 60000))
+app.use('*', rateLimit(100, 60000))
 app.use('/*',cors());
 app.route('/api/v1/user',userRouter);
 

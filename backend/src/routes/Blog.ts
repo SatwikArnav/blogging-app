@@ -84,7 +84,11 @@ blogRouter.get('/bulk', async (c) => {
                         //intro:true
                     }
                 }
-            }
+                
+            },
+            orderBy: {
+                createdAt: 'desc',
+              },
         });
          return c.json(post);
         }
@@ -133,7 +137,10 @@ blogRouter.get('bulk/:id?',async  (c) => {
                         //intro:true
                     }
                 }
-            }
+            },
+            orderBy: {
+                createdAt: 'desc',
+              },
             
     })   
          return c.json(post);
