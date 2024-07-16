@@ -2,7 +2,7 @@ import { FullBlog } from "../components/fullBlog";
 import { useBlog } from "../customhooks";
 import { useParams } from "react-router-dom";
 import { Loading } from "../components/loading";
-import { Comments } from "../components/comments";
+// import { Comments } from "../components/comments";
 import { CreateComment } from "../components/createcomment";
 import { useState } from "react";
 
@@ -11,9 +11,9 @@ export const Blog = () => {
     const { blog, loading } = useBlog({
         id: id || ""
     });
-    const { comments, loadings } = useComments({        
-        id: id || ""
-    });
+    // const { comments, loadings } = useComments({        
+    //     id: id || ""
+    // });
     const [comment, setComment] = useState("");
 
     if (loading || !blog) {
