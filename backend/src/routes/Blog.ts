@@ -174,7 +174,8 @@ blogRouter.get('/:id',async  (c) => {
                         name: true,
                         intro:true
                     }
-                }
+                },
+                comments: true,
             }
             
          })   

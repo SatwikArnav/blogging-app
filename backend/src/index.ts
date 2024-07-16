@@ -1,5 +1,6 @@
 import { decode, sign, verify } from 'hono/jwt'
 
+
 import { Hono } from 'hono'
 import { cors } from 'hono/cors'
 //import { PrismaClient } from '@prisma/client/edge'
@@ -18,6 +19,7 @@ const app = new Hono<{
 }>();
 
 import { Context, Next } from 'hono'
+import commentRouter from './routes/comment'
 
 const rateLimit = (limit: number, window: number) => {
   const ipMap = new Map<string, { count: number; resetTime: number }>()
@@ -45,6 +47,7 @@ app.use('/*',cors());
 app.route('/api/v1/user',userRouter);
 
 app.route('/api/v1/blog',blogRouter);
+app.route('/api/v1/comment',commentRouter);
 
 
 

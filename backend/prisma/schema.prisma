@@ -21,6 +21,7 @@ model User {
   password String
   intro    String   @default("The author did not bother to give any intro")
   posts    Post[]
+  comments Comment[]
 }
 
 model Post {
@@ -32,4 +33,24 @@ model Post {
 
   author    User     @relation(fields: [authorId], references: [id])
   authorId  String
+  comments  Comment[]
+  likes     Like[]
+
+}
+
+model Comment {
+  id        String   @id @default(uuid())
+  content   String
+  createdAt String   @default(dbgenerated("TO_CHAR(CURRENT_DATE, 'DD-MM-YYYY')"))
+  postId    String    
+  post      Post     @relation(fields: [postId], references: [id])
+  user      User     @relation(fields: [userId], references: [id])
+  userId    String
+} 
+
+model Like {
+  id        String   @id @default(uuid())
+  createdAt String   @default(dbgenerated("TO_CHAR(CURRENT_DATE, 'DD-MM-YYYY')"))
+  postId    String
+  post      Post     @relation(fields: [postId], references: [id])  
 }

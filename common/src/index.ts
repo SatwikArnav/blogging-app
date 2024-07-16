@@ -19,6 +19,10 @@ export const createPostInput = z.object({
     title: z.string(),
     content: z.string(),
 });
+export const createCommentInput = z.object({
+    
+    content: z.string(),
+});
 
 export type CreatePostType = z.infer<typeof createPostInput>;
 

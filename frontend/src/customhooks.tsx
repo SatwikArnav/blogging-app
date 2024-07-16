@@ -11,7 +11,15 @@ export interface Blog {
         "name": string
         "intro":string
     }
+    "comments":{
+        "content": string;
+        "createdAt":string
+    }
 }
+
+
+
+
 export const useBlogs=(filter:string)=>{
     const [blogs,setblogs]=useState<Blog[]>([]);
     const [loading,setloading]=useState(true);
@@ -65,3 +73,26 @@ export const useBlog = ({ id }: { id: string }) => {
     }
 
 }
+
+export const useComments = ({ id }: { id: string }) => {
+    const [loading, setLoading] = useState(true);
+    const [comments, setComments] = useState<Comment[]>([]);
+    
+    useEffect(() => {
+        axios.get(`${BACKEND_URL}/api/v1/comment/${id}`, {
+            headers: {
+                Authorization: localStorage.getItem("token")
+            }
+        })
+            .then(response => {
+                setComments(response.data);
+                setLoading(false);
+            })
+    }, [id])
+
+    return {
+        loading,
+        comments
+    }
+}
+    

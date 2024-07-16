@@ -7,3 +7,6 @@ return(
 </div>
 )
 }
+
+//make a div that has a loading animation
+
