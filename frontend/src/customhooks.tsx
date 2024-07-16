@@ -55,7 +55,7 @@ export const useBlog = ({ id }: { id: string }) => {
     const [blog, setBlog] = useState<Blog>();
     
     useEffect(() => {
-        axios.get(`${BACKEND_URL}/api/v1/blog/${id}`, {
+        axios.get(`${process.env.BACKEND_URL}/api/v1/blog/${id}`, {
             headers: {
                 Authorization: localStorage.getItem("token")
             }
@@ -79,7 +79,7 @@ export const useComments = ({ id }: { id: string }) => {
     const [comments, setComments] = useState<Comment[]>([]);
     
     useEffect(() => {
-        axios.get(`${BACKEND_URL}/api/v1/comment/${id}`, {
+        axios.get(`${process.env.BACKEND_URL}/api/v1/comment/${id}`, {
             headers: {
                 Authorization: localStorage.getItem("token")
             }
