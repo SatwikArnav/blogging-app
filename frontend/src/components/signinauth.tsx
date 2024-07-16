@@ -1,16 +1,14 @@
-import { SigninType} from "@satwikarnav/common-app";
+import { SigninType } from "@satwikarnav/common-app";
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { BACKEND_URL } from "../config";
-//import { Axios } from "axios";
 import axios from "axios";
+
 export const SigninAuth = () => {
   const [input, setInput] = useState<SigninType>({
     email: "",
     password: "",
-   
   });
-  const navigate=useNavigate();
+  const navigate = useNavigate();
 
   return (
     <div className="bg-slate-200">
@@ -27,7 +25,6 @@ export const SigninAuth = () => {
               </div>
             </div>
             <div className="flex flex-col mt-10">
-              
               <div>
                 <label htmlFor="first_name" className="block mb-2 text-sm font-medium text-black mt-2">
                   Email
@@ -66,19 +63,17 @@ export const SigninAuth = () => {
               </div>
             </div>
             <button
-              
               className="text-white bg-black font-medium rounded-lg text-sm py-2 ml-1 text-center mt-20 min-w-96 mb-10"
-              onClick={async ()=>{
+              onClick={async () => {
                 try {
-                    const response = await axios.post(`${BACKEND_URL}/api/v1/user/signin ` , input);
-                    const jwt = response.data.token;
-                    localStorage.setItem("token", jwt);
-                    const name=response.data.name||"Anonymous";
-                    localStorage.setItem("name",name );
-                    navigate("/blogs");
-                } catch(e) {
-                    alert("Error while signing in")
-                    // alert the user here that the request failed
+                  const response = await axios.post(`${process.env.BACKEND_URL}/api/v1/user/signin`, input);
+                  const jwt = response.data.token;
+                  localStorage.setItem("token", jwt);
+                  const name = response.data.name || "Anonymous";
+                  localStorage.setItem("name", name);
+                  navigate("/blogs");
+                } catch (e) {
+                  alert("Error while signing in");
                 }
               }}
             >
