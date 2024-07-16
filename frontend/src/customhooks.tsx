@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react"
-import { BACKEND_URL } from "./config";
+// import { BACKEND_URL } from "./config";
 import axios from "axios";
 
 export interface Blog {
@@ -25,7 +25,7 @@ export const useBlogs=(filter:string)=>{
     const [loading,setloading]=useState(true);
     
     useEffect(() => {
-        let url=`${BACKEND_URL}/api/v1/blog/bulk`
+        let url=`${process.env.BACKEND_URL}/api/v1/blog/bulk`
         if (filter!=""){
             url=url+`/${filter}`
         }

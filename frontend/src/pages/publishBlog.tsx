@@ -2,7 +2,7 @@ import { useState } from "react"
 import { Appbar } from "../components/appbar"
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-import { BACKEND_URL } from "../config";
+// import { BACKEND_URL } from "../config";
 import { Dropdown } from "../components/dropdown";
 
 
@@ -118,7 +118,7 @@ export const Publish=()=>{
    
 </form>
 <button onClick={async () => {
-                    const response = await axios.post(`${BACKEND_URL}/api/v1/blog`, {
+                    const response = await axios.post(`${process.env.BACKEND_URL}/api/v1/blog`, {
                         title,
                         content
                     }, {

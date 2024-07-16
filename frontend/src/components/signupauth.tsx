@@ -1,7 +1,7 @@
 import {  SignupType,} from "@satwikarnav/common-app";
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { BACKEND_URL } from "../config";
+// import { BACKEND_URL } from "../config";
 //import { Axios } from "axios";
 import axios from "axios";
 export const SignupAuth = () => {
@@ -106,7 +106,7 @@ export const SignupAuth = () => {
               className="text-white bg-black font-medium rounded-lg text-sm py-2 ml-1 text-center mt-20 min-w-96 mb-10"
               onClick={async ()=>{
                 try {
-                    const response = await axios.post(`${BACKEND_URL}/api/v1/user/signup ` , input);
+                    const response = await axios.post(`${process.env.BACKEND_URL}/api/v1/user/signup ` , input);
                     console.log(response.data);
                     const jwt = response.data.token;
                     localStorage.setItem("token", jwt);
